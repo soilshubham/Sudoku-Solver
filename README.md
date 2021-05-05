@@ -1,2 +1,4 @@
 # Sudoku-Solver-Python
-A Sudoku Solver program with GUI built using python and tkinter library.
+A Sudoku Solver application built using python and tkinter library.
+
+<img src="./ss01.png" width=80%>
