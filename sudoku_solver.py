@@ -1,10 +1,19 @@
 import tkinter as tk
 
-primaryColor = "#1c1c1c"
-redColor = "#ff4336"
-orangeColor = "#ffa13d"
-greenColor = "#3dff61"
-textColor = "#a1a1a1"
+primaryColor = "#1b1b1b"
+secondaryColor = "#2e2e2e"
+buttonColor_1 = "#2e2e2e"
+buttonColor_2 = "#363636"
+
+redColor = "#f14d42"
+orangeColor = "#c3804a"
+greenColor = "#5db96e"
+textColor_1 = "#d1d1d1"
+textColor_2 = "#696969"
+
+boxColor_1 = "#343434"
+boxColor_2 = "#2d2d2d"
+boxBorderColor = "#232323"
 
 # Finds the empty slots and returns true
 def findZeros(arr, zero):
@@ -119,8 +128,7 @@ def reset():
             t[i][j].insert(0, "")
     msg1.config(text="""Fill in your Sudoku
 and hit Solve!""")
-    msg1.config(fg=textColor)
-
+    msg1.config(fg=textColor_2)
 
 if __name__ == "__main__":
 
@@ -143,29 +151,30 @@ if __name__ == "__main__":
     app.config(bg=primaryColor)
     app.iconbitmap("icon.ico")
 
-    sudokuFrame = tk.Frame(app, bg='#969696')
+    sudokuFrame = tk.Frame(app, bg=boxBorderColor)
     sudokuFrame.grid(row=0, column=0, padx="20", pady="20")
 
     btnFrame = tk.Frame(app, bg=primaryColor)
     btnFrame.place(x="830", y="500")
-    btnFrame.grid_columnconfigure(0, weight=1)
-    btnFrame.grid_columnconfigure(2, weight=1)
+    
 
-    msgFrame = tk.Frame(app, bg=primaryColor)
+    msgFrame = tk.Frame(app)
     msgFrame.place(x="890", y="300")
-
-    title = tk.Label(app, text='Sudoku Solver', font='Arial 25 bold', bg=primaryColor, fg='#a1a1a1')
+    msgFrame.grid_columnconfigure(0, weight=1)
+    msgFrame.grid_columnconfigure(2, weight=1)
+    
+    title = tk.Label(app, text='Sudoku Solver', font='Arial 25 bold', bg=primaryColor, fg=textColor_1)
     title.place(x="815", y="50")
-    subTitle = tk.Label(app, text='- by soilshubham', font='Arial 10', bg=primaryColor, fg='#a1a1a1')
+    subTitle = tk.Label(app, text='- by soilshubham', font='Arial 10', bg=primaryColor, fg=textColor_2)
     subTitle.place(x="990", y="120")
 
     msg1 = tk.Label(msgFrame, text="""Fill in your Sudoku
-and hit Solve!""", font='Arial 11', bg=primaryColor, fg=textColor, justify=tk.CENTER)
+and hit Solve!""", font='Arial 12', bg=primaryColor, fg=textColor_2, justify=tk.CENTER)
     msg1.grid(row=0, column=1)
     
-    btn_solve = tk.Button(btnFrame, text="Solve", command=runSolver, font='Arial 12', bg='#303030',fg='#a1a1a1', relief="raised")
+    btn_solve = tk.Button(btnFrame, text="Solve", command=runSolver, font='Arial 12', bg=buttonColor_1, activebackground=buttonColor_2, fg=textColor_1, bd=0, activeforeground=textColor_1 , relief=tk.FLAT)
     btn_solve.grid(row=0, column=0, ipadx="100", ipady="10")
-    btn_reset = tk.Button(btnFrame, text="Reset", command=reset, font='Arial 10', bg='#303030',fg='#a1a1a1', relief="raised")
+    btn_reset = tk.Button(btnFrame, text="Reset", command=reset, font='Arial 10', bg=buttonColor_1, activebackground=buttonColor_2, fg=textColor_1, bd=0, activeforeground=textColor_1, relief=tk.FLAT)
     btn_reset.grid(row=1, column=0, ipadx="105", ipady="8", pady="20")
 
     t=[]
@@ -176,9 +185,9 @@ and hit Solve!""", font='Arial 11', bg=primaryColor, fg=textColor, justify=tk.CE
             ci = i - i%3
             cj = j - j%3
             cT = 10*ci + cj
-            if cT in [0, 6, 33, 60, 66]:boxColor = '#f0f0f0'
-            else: boxColor = '#ffffff'
-            k.append(tk.Entry(sudokuFrame, width=5, justify="center", font='Arial 13', bd=1, relief="flat", bg=boxColor))
+            if cT in [0, 6, 33, 60, 66]:boxColor = boxColor_1
+            else: boxColor = boxColor_2
+            k.append(tk.Entry(sudokuFrame, width=5, justify="center", font='Arial 13', bd=1, relief="flat", bg=boxColor, fg=textColor_2))
             k[j].grid(row=i,column=j, ipadx=4, ipady=20, padx=2, pady=2)
 
         t.append(k)
